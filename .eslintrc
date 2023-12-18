@@ -1,0 +1,169 @@
+{
+	// Settings
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	// Monitor only the root folder
+	"root": true,
+	// Runtime code enviroment (examples: node, browser, jest)
+	"env": {
+    	"browser": true,
+    	"es2021": true,
+    	"jest": true,
+    	"node": true
+  	},
+	// Parser options
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	// Third-party plugins
+	"plugins": [
+		"react",
+		"react-hooks",
+		"i18next",
+		"prettier",
+		"import",
+		"unused-imports"
+	],
+	// Extends config
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:i18next/recommended",
+		"prettier" // Make sure this is always the last element in the array
+	],
+	// ESLint plugins rules
+	"rules": {
+		// Standart rules
+		"curly": "warn", // Enforce consistent brace style for all control statements
+		// React
+		"react/jsx-filename-extension": [
+    		2,
+    		{ "extensions": [".js", ".jsx"] }
+    	],
+		// Prettier
+		"prettier/prettier": [
+			"warn",
+			{},
+			{
+				"usePrettierrc": true
+			}
+		],
+		// Unused vars and imports
+		"no-unused-vars": "off",
+		"unused-imports/no-unused-imports": "warn",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		],
+		// Imports sorting
+		"sort-imports": [
+			"warn",
+			{
+				"ignoreDeclarationSort": true, // Don"t want to sort import lines, use eslint-plugin-import instead
+				"allowSeparatedGroups": true
+			}
+		],
+		"import/newline-after-import": "warn",
+		"import/no-deprecated": "warn",
+		"import/no-useless-path-segments": "warn",
+		"import/order": [
+			"warn",
+			{
+				"groups": [
+					"builtin", // Built-in imports (come from NodeJS native) go first
+					"external", // External imports
+					"internal", // Absolute imports
+					[
+						"sibling",
+						"parent"
+					], // Relative imports, the sibling and parent types they can be mingled together
+					"index", // Index imports
+					"unknown" // Unknown
+				],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc", // Sort in ascending order
+					"caseInsensitive": true // Ignore case
+				}
+			}
+		],
+		"react/require-default-props": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/display-name": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/function-component-definition": "off",
+		"no-shadow": "off",
+		"import/extensions": "off",
+		"import/no-extraneous-dependencies": "off",
+		"no-underscore-dangle": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
+		"i18next/no-literal-string": [
+			"error",
+			{
+				"markupOnly": true,
+				"ignoreAttribute": ["data-testid", "to", "target"]
+			}
+		]
+	},
+	// Override config for different extensions
+	"overrides": [
+		{
+			// TypeScript files
+			"files": [
+				"*.ts",
+				"*.tsx"
+			],
+			// TypeScript parser
+			"parser": "@typescript-eslint/parser",
+			// TypeScript plugins
+			"plugins": [
+				"@typescript-eslint"
+			],
+			// TypeScript rules
+			"rules": {
+				"@typescript-eslint/ban-ts-comment": "warn",
+				// React
+				"react/jsx-filename-extension": [
+					2,
+					{ "extensions": [".tsx"] }
+				]
+			}
+		},
+		{
+			"files": [
+				"**/src/**/*.{test,stories}.{ts,tsx}",
+				"./config//jest//jestEmptyComponent.tsx"
+			],
+			"rules": {
+				"i18next/no-literal-string": "off",
+				"max-len": "off"
+			}
+		}
+	],
+	// Ignore unnecessary files or folders
+	"ignorePatterns": [
+		"node_modules",
+		"build"
+	],
+
+	// Global variables
+	"globals": {
+    	"__IS_DEV__": "readonly",
+   		"__API__": "readonly"
+  	}
+}
+

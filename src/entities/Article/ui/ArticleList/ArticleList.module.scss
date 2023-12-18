@@ -1,0 +1,29 @@
+.BIG {
+  .card {
+    margin-bottom: 20px;
+  }
+}
+
+.SMALL {
+  max-width: 1200px;
+  display: flex;
+  gap: 30px;
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
+
+  &.no_wrap {
+    flex-wrap: nowrap;
+  }
+
+  .card {
+    display: inline-flex;
+    height: 300px;
+  }
+
+  .row {
+    display: flex;
+    gap: 30px;
+  }
+}
